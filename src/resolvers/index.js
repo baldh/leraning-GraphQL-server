@@ -4,11 +4,19 @@ export const resolvers = {
     //the homepage grid of our content
     tracksForHome: (_, __, {dataSources}) => {
       return dataSources.trackApi.getTracksForHome()
+    },
+    //get a single track by id
+    //the track will be used to populate the Track page
+    track: (_, args, {dataSources}) => {
+      return dataSources.trackApi.getTrack(args.id)
     }
   },
   Track: {
     author: ({authorId}, __, {dataSources}) => {
       return dataSources.trackApi.getAuthor(authorId)
+    },
+    modules: ({id}, __, {dataSources}) => {
+      return dataSources.trackApi.getTrackModules(id)
     }
   }
 }
@@ -25,4 +33,10 @@ export const resolvers = {
  * The "parent" argument in a resolver is the value returned
  * by the previous resolver. Here, "parent" argument in
  * "Track.author" is the return value of "Query.tracksForHome"
+ * */
+
+/**
+ * Here we are creating a resolver chain with "track", "Track.author" and
+ * "Track.modules". We don't call "author" and "modules" within "track", because
+ * query might not ask for these fields.
  * */
