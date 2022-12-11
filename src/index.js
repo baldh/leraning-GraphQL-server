@@ -1,19 +1,17 @@
 import {ApolloServer} from 'apollo-server'
-import typeDefs from './graphql/schema'
-import {resolvers} from './graphql/resolvers'
-import TrackApi from './graphql/data/rest/track-api'
+import schema from './graphql/schema/index.js'
+import TrackApi from './graphql/data/rest/track-api.js'
 
 const server = new ApolloServer({
-  typeDefs,
-  resolvers,
-  dataSources: ()=> {
+  schema,
+  dataSources: () => {
     return {
       trackApi: new TrackApi()
     }
   }
 })
 
-server.listen().then(()=> {
+server.listen().then(() => {
   console.log(`
   🚀 Server is running!
   🔊 Listening on port 400
