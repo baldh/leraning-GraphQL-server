@@ -7,7 +7,7 @@ const typeDefs = gql`
         "Query to get a single track corresponding to its ID"
         track(id: ID!): Track! #id is passed as an argument to the query "track"
     }
-    
+
     "An author is a person or organization that creates a track"
     type Author {
         id: ID!
@@ -16,7 +16,7 @@ const typeDefs = gql`
         "Author's profile picture url"
         photo: String
     }
-    
+
     "A module is a single unit of teaching. Multiple modules compose a track"
     type Module {
         id: ID!
@@ -25,7 +25,7 @@ const typeDefs = gql`
         "The module's length in minutes"
         length: Int
     }
-    
+
     "A track is a group of modules that teaches about specific type"
     type Track {
         id: ID!

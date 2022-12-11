@@ -1,7 +1,7 @@
 import {ApolloServer} from 'apollo-server'
-import typeDefs from './schema.js'
-import {resolvers} from './resolvers/index.js'
-import TrackApi from './data-sources/rest/track-api.js'
+import typeDefs from './graphql/schema'
+import {resolvers} from './graphql/resolvers'
+import TrackApi from './graphql/data/rest/track-api'
 
 const server = new ApolloServer({
   typeDefs,
