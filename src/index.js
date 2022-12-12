@@ -1,5 +1,5 @@
 import {ApolloServer} from 'apollo-server'
-import schema from './graphql/schema/index.js'
+import schema from './graphql/schema.js'
 import TrackApi from './graphql/data/rest/track-api.js'
 
 const server = new ApolloServer({

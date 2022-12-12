@@ -1,6 +1,14 @@
 import {gql} from "apollo-server"
+import {Author} from './author.js'
+import {Module} from './module.js'
 
 export const Track = gql`
+    type Query{
+        "Query to get tracks array for the homepage grid"
+        tracksForHome: [Track!]!
+        "Query to get a single track corresponding to its ID"
+        track(id: ID!): Track! #id is passed as an argument to the query "track"
+    }
     "A track is a group of modules that teaches about specific type"
     type Track {
         id: ID!
@@ -21,4 +29,7 @@ export const Track = gql`
         "An array comprising of every modules in the track"
         modules: [Module!]!
     }
+    
+    ${Author}
+    ${Module}
 `
