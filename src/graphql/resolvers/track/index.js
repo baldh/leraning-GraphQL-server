@@ -11,6 +11,29 @@ export const TrackResolvers = {
       return dataSources.trackApi.getTrack(args.id)
     }
   },
+
+  Mutation: {
+    //increments a track's numberOfViews property
+    incrementTrackViews: async(_,{id},{dataSources}) => {
+      try {
+        const track = await dataSources.trackApi.incrementTrackViews(id)
+        return {
+          code: 200,
+          success: true,
+          message: `Successfully incremented number of views for track ${id}`,
+          track
+        }
+      } catch (e) {
+        return {
+          code: e.extension.response.status,
+          success: false,
+          message: e.extension.response.body,
+          track: null
+        }
+      }
+    }
+  },
+
   Track: {
     author: ({authorId}, __, {dataSources}) => {
       return dataSources.trackApi.getAuthor(authorId)
@@ -18,7 +41,7 @@ export const TrackResolvers = {
     modules: ({id}, __, {dataSources}) => {
       return dataSources.trackApi.getTrackModules(id)
     }
-  }
+  },
 }
 
 /*

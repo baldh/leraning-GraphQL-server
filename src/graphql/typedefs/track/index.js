@@ -1,6 +1,7 @@
 import {gql} from "apollo-server"
 import {Author} from './author.js'
 import {Module} from './module.js'
+import {IncrementTrackViews} from './increment-track-views.js'
 
 export const Track = gql`
     type Query{
@@ -32,4 +33,5 @@ export const Track = gql`
     
     ${Author}
     ${Module}
+    ${IncrementTrackViews}
 `
